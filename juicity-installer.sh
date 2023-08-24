@@ -20,7 +20,7 @@ print_with_delay() {
 # Introduction animation
 echo ""
 echo ""
-print_with_delay "juicity-installer by DEATHLINE | @NamelesGhoul" 0.1
+#print_with_delay "juicity-installer by DEATHLINE | @NamelesGhoul" 0.1
 echo ""
 echo ""
 
@@ -134,7 +134,7 @@ UUID=$(uuidgen)
 read -p "Enter SNI (or press enter to www.speedtest.net): " SNI
 if [[ -z "$SNI" ]]; then
     SNI="www.speedtest.net"
-SNID="/CN="+"$SNI"
+SNID=$("/CN="+"$SNI")
 echo "$SNID"
 # Generate keys
 openssl ecparam -genkey -name prime256v1 -out "$INSTALL_DIR/private.key"
