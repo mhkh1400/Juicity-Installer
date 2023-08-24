@@ -134,7 +134,7 @@ UUID=$(uuidgen)
 read -p "Enter SNI (or press enter to www.speedtest.net): " SNI
 if [[ -z "$SNI" ]]; then
     SNI="www.speedtest.net"
-SNID=$("/CN="+"$SNI")
+SNID="/CN=$SNI"
 echo "$SNID"
 # Generate keys
 openssl ecparam -genkey -name prime256v1 -out "$INSTALL_DIR/private.key"
