@@ -132,10 +132,12 @@ fi
 UUID=$(uuidgen)
 
 read -p "Enter SNI (or press enter to www.speedtest.net): " SNI
-[[ -z "$SNI" ]] && SNI=$(/CN=www.speedtest.net)
+if [[ -z "$SNI" ]]; then
+    SNI="www.speedtest.net"
+SNID="/CN="+$SNI
 # Generate keys
 openssl ecparam -genkey -name prime256v1 -out "$INSTALL_DIR/private.key"
-openssl req -new -x509 -days 36500 -key "$INSTALL_DIR/private.key" -out "$INSTALL_DIR/fullchain.cer" -subj "$SNI"
+openssl req -new -x509 -days 36500 -key "$INSTALL_DIR/private.key" -out "$INSTALL_DIR/fullchain.cer" -subj "$SNID"
 
 cat > $CONFIG_FILE <<EOL
 {
