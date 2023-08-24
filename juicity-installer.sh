@@ -135,6 +135,7 @@ read -p "Enter SNI (or press enter to www.speedtest.net): " SNI
 if [[ -z "$SNI" ]]; then
     SNI="www.speedtest.net"
 SNID="/CN="+"$SNI"
+echo "$SNID"
 # Generate keys
 openssl ecparam -genkey -name prime256v1 -out "$INSTALL_DIR/private.key"
 openssl req -new -x509 -days 36500 -key "$INSTALL_DIR/private.key" -out "$INSTALL_DIR/fullchain.cer" -subj "$SNID"
